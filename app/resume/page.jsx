@@ -80,20 +80,20 @@ const Resume = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 0.5, duration: 0.5, ease: "easeInOut" }}
-      className="min-h-[80vh] flex items-center justify-center py-6 sm:py-8 xl:py-12 text-white"
+      className="min-h-screen flex items-center justify-center py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 text-white"
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20 max-w-screen-xl">
         <Tabs
           defaultValue="Experience"
-          className="flex flex-col xl:flex-row gap-4 sm:gap-6 xl:gap-16 w-full"
+          className="flex flex-col lg:flex-row gap-6 sm:gap-8 md:gap-12 lg:gap-16 xl:gap-20 w-full"
         >
           {/* Tabs List */}
-          <TabsList className="flex flex-row xl:flex-col gap-2 sm:gap-3 w-full xl:max-w-[300px] overflow-x-auto xl:overflow-x-visible">
+          <TabsList className="flex flex-row lg:flex-col gap-3 sm:gap-4 md:gap-6 w-full lg:max-w-[350px] overflow-x-auto lg:overflow-x-visible">
             {["Experience", "Education", "Skills", "About Me"].map((tab) => (
               <TabsTrigger
                 key={tab}
                 value={tab}
-                className="text-white bg-[#27272c] hover:bg-green-500 hover:text-black rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-center transition-all duration-300 data-[state=active]:bg-green-500 data-[state=active]:text-black text-sm sm:text-base whitespace-nowrap"
+                className="text-white bg-[#27272c] hover:bg-green-500 hover:text-black rounded-lg px-4 sm:px-6 md:px-8 py-3 sm:py-4 md:py-5 text-center transition-all duration-300 data-[state=active]:bg-green-500 data-[state=active]:text-black text-sm sm:text-base md:text-lg whitespace-nowrap"
               >
                 {tab}
               </TabsTrigger>
@@ -101,20 +101,20 @@ const Resume = () => {
           </TabsList>
 
           {/* Tabs Content */}
-          <div className="min-h-[70vh] w-full mt-6 xl:mt-0">
+          <div className="min-h-[70vh] w-full mt-6 lg:mt-0">
             {/* Experience */}
             <TabsContent value="Experience">
-              <h3 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">{experience.title}</h3>
-              <p className="text-white/70 mb-4 sm:mb-6 text-sm sm:text-base">{experience.description}</p>
-              <div className="flex flex-col gap-4 sm:gap-6">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 md:mb-8">{experience.title}</h3>
+              <p className="text-white/70 mb-6 sm:mb-8 md:mb-10 text-sm sm:text-base md:text-lg">{experience.description}</p>
+              <div className="flex flex-col gap-6 sm:gap-8 md:gap-10">
                 {experience.items.map((exp, index) => (
                   <div
                     key={index}
-                    className="border border-gray-700 p-3 sm:p-4 rounded-lg hover:border-green-500 transition"
+                    className="border border-gray-700 p-4 sm:p-6 md:p-8 rounded-lg hover:border-green-500 transition"
                   >
-                    <h4 className="text-lg sm:text-xl font-semibold text-white">{exp.role}</h4>
-                    <p className="text-accent text-sm sm:text-base">{exp.company}</p>
-                    <span className="text-xs sm:text-sm text-gray-400">{exp.period}</span>
+                    <h4 className="text-lg sm:text-xl md:text-2xl font-semibold text-white mb-2">{exp.role}</h4>
+                    <p className="text-accent text-sm sm:text-base md:text-lg mb-2">{exp.company}</p>
+                    <span className="text-xs sm:text-sm md:text-base text-gray-400">{exp.period}</span>
                   </div>
                 ))}
               </div>
@@ -122,53 +122,52 @@ const Resume = () => {
 
             {/* Education */}
             <TabsContent value="Education">
-              <h3 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">{education.title}</h3>
-              <p className="text-accent mb-4 sm:mb-6 text-sm sm:text-base">{education.description}</p>
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 md:mb-8">{education.title}</h3>
+              <p className="text-accent mb-6 sm:mb-8 md:mb-10 text-sm sm:text-base md:text-lg">{education.description}</p>
               {education.items.map((edu, index) => (
                 <div
                   key={index}
-                  className="border border-gray-700 p-3 sm:p-4 rounded-lg hover:border-green-500 transition mb-3 sm:mb-4"
+                  className="border border-gray-700 p-4 sm:p-6 md:p-8 rounded-lg hover:border-green-500 transition mb-4 sm:mb-6 md:mb-8"
                 >
-                  <h4 className="text-lg sm:text-xl font-semibold">{edu.title}</h4>
-                  <span className="text-xs sm:text-sm text-accent">{edu.period}</span>
+                  <h4 className="text-lg sm:text-xl md:text-2xl font-semibold mb-2">{edu.title}</h4>
+                  <span className="text-xs sm:text-sm md:text-base text-accent">{edu.period}</span>
                 </div>
               ))}
             </TabsContent>
 
             {/* Skills */}
             <TabsContent value="Skills">
-              <h3 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">{skills.title}</h3>
-              <p className="text-white/70 mb-4 sm:mb-6 text-sm sm:text-base">{skills.description}</p>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 md:mb-8">{skills.title}</h3>
+              <p className="text-white/70 mb-6 sm:mb-8 md:mb-10 text-sm sm:text-base md:text-lg">{skills.description}</p>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-6 sm:gap-8 md:gap-10">
                 {skills.skillList.map((skill) => (
                   <div
                     key={skill.name}
-                    className="flex flex-col items-center gap-2 group"
+                    className="flex flex-col items-center gap-3 sm:gap-4 group"
                   >
-                    <div className="text-2xl sm:text-3xl border border-gray-500 rounded-lg p-3 sm:p-4 transition-colors duration-300 group-hover:text-accent">
+                    <div className="text-3xl sm:text-4xl md:text-5xl border border-gray-500 rounded-lg p-4 sm:p-6 md:p-8 transition-colors duration-300 group-hover:text-accent">
                       {skill.icon}
                     </div>
-                    <span className="text-xs sm:text-sm">{skill.name}</span>
+                    <span className="text-sm sm:text-base md:text-lg">{skill.name}</span>
                   </div>
                 ))}
               </div>
             </TabsContent>
 
-
             {/* About Me */}
             <TabsContent value="About Me">
-              <h3 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">{about.title}</h3>
-              <p className="text-white/70 mb-4 sm:mb-6 text-sm sm:text-base">{about.description}</p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 md:mb-8">{about.title}</h3>
+              <p className="text-white/70 mb-6 sm:mb-8 md:mb-10 text-sm sm:text-base md:text-lg">{about.description}</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                 {about.info.map((item, index) => (
                   <div
                     key={index}
-                    className="border border-gray-700 p-3 rounded-lg flex justify-between hover:border-green-500 transition"
+                    className="border border-gray-700 p-4 sm:p-6 md:p-8 rounded-lg flex justify-between hover:border-green-500 transition"
                   >
-                    <span className="font-medium text-white text-sm sm:text-base">
+                    <span className="font-medium text-white text-sm sm:text-base md:text-lg">
                       {item.fieldname}:
                     </span>
-                    <span className="text-accent text-sm sm:text-base">{item.value}</span>
+                    <span className="text-accent text-sm sm:text-base md:text-lg">{item.value}</span>
                   </div>
                 ))}
               </div>

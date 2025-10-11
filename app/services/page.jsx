@@ -36,43 +36,43 @@ const services = [
 
 const Services = () => {
   return (
-    <section className="min-h-[80vh] flex flex-col justify-center py-6 sm:py-8 xl:py-12">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="min-h-screen flex flex-col justify-center py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{
             opacity: 1,
             transition: { delay: 0.5, duration: 0.5, ease: "easeInOut" },
           }}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 xl:gap-[45px]"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16 lg:gap-20 xl:gap-24"
         >
           {services.map((service, index) => (
             <div
               key={index}
-              className="flex-1 flex flex-col justify-center gap-4 sm:gap-6 group"
+              className="flex-1 flex flex-col justify-center gap-6 sm:gap-8 md:gap-10 group"
             >
               {/* header */}
               <div className="w-full flex justify-between items-center">
-                <div className="text-3xl sm:text-4xl lg:text-3xl font-extrabold text-outline leading-tight text-transparent transition-all duration-300">
+                <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-outline leading-tight text-transparent transition-all duration-300">
                   {service.num}
                 </div>
                 <Link 
                   href={service.href || "#"} 
-                  className="w-10 h-10 sm:w-12 sm:h-12 lg:w-[60px] lg:h-[60px] rounded-full bg-white text-outline flex items-center justify-center transition-all duration-300
+                  className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-[70px] lg:h-[70px] rounded-full bg-white text-outline flex items-center justify-center transition-all duration-300
                   group-hover:bg-accent
                   hover:rotate-45"
                 >
-                  <BsArrowDownRight className="text-lg sm:text-xl lg:text-2xl group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform duration-300 text-primary text-outline" />
+                  <BsArrowDownRight className="text-xl sm:text-2xl md:text-3xl lg:text-4xl group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform duration-300 text-primary text-outline" />
                 </Link>
               </div>
 
               {/* title */}
-              <h2 className="text-lg sm:text-xl lg:text-2xl xl:text-[38px] font-bold leading-tight text-outline">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[38px] font-bold leading-tight text-outline">
                 {service.title}
               </h2>
 
               {/* description */}
-              <p className="text-white/50 leading-relaxed text-sm sm:text-base">
+              <p className="text-white/50 leading-relaxed text-sm sm:text-base md:text-lg lg:text-xl">
                 {service.description}
               </p>
 

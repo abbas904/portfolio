@@ -38,17 +38,17 @@ const Contact = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 0.5, duration: 0.5, ease: "easeInOut" }}
-      className="py-6 sm:py-8 xl:py-12 text-white"
+      className="py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 text-white min-h-screen"
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col xl:flex-row gap-6 sm:gap-8 xl:gap-[30px]">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
+        <div className="flex flex-col lg:flex-row gap-8 sm:gap-12 md:gap-16 lg:gap-20 xl:gap-24">
           {/* form */}
-          <div className="xl:h-[54%] order-2 xl:order-none">
-            <form className="flex flex-col gap-4 sm:gap-6 p-6 sm:p-8 xl:p-10 bg-[#27272c] rounded-xl">
-              <h3 className="text-2xl sm:text-3xl xl:text-4xl text-accent font-bold">
+          <div className="lg:w-[60%] order-2 lg:order-none">
+            <form className="flex flex-col gap-6 sm:gap-8 md:gap-10 p-6 sm:p-8 md:p-10 lg:p-12 bg-[#27272c] rounded-xl">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-accent font-bold">
                 Let's Work Together
               </h3>
-              <p className="text-white/60 leading-relaxed text-sm sm:text-base">
+              <p className="text-white/60 leading-relaxed text-sm sm:text-base md:text-lg">
                 Feel free to get in touch with me for collaborations, project
                 inquiries, or any creative ideas you'd like to bring to life.
                 I'm always open to discussing new opportunities and sharing
@@ -59,16 +59,16 @@ const Contact = () => {
               </p>
 
               {/* inputs */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                <Input type="text" placeholder="First Name" />
-                <Input type="text" placeholder="Last Name" />
-                <Input type="email" placeholder="Email Address" />
-                <Input type="tel" placeholder="Phone Number" />
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+                <Input type="text" placeholder="First Name" className="h-12 sm:h-14 md:h-16 text-sm sm:text-base md:text-lg" />
+                <Input type="text" placeholder="Last Name" className="h-12 sm:h-14 md:h-16 text-sm sm:text-base md:text-lg" />
+                <Input type="email" placeholder="Email Address" className="h-12 sm:h-14 md:h-16 text-sm sm:text-base md:text-lg" />
+                <Input type="tel" placeholder="Phone Number" className="h-12 sm:h-14 md:h-16 text-sm sm:text-base md:text-lg" />
               </div>
 
               {/* select */}
               <Select>
-                <SelectTrigger className="w-full">
+                <SelectTrigger className="w-full h-12 sm:h-14 md:h-16 text-sm sm:text-base md:text-lg">
                   <SelectValue placeholder="Select a Service" />
                 </SelectTrigger>
                 <SelectContent>
@@ -84,28 +84,28 @@ const Contact = () => {
               {/* message */}
               <Textarea
                 placeholder="Your Message"
-                className="h-24 sm:h-32 resize-none mt-4 sm:mt-6 xl:mt-10"
+                className="h-24 sm:h-32 md:h-40 resize-none mt-4 sm:mt-6 md:mt-8 text-sm sm:text-base md:text-lg"
               />
 
               {/* button */}
-              <Button className="self-start bg-accent hover:bg-accent/80 text-black font-semibold w-full sm:w-auto">
+              <Button className="self-start bg-accent hover:bg-accent/80 text-black font-semibold w-full sm:w-auto h-12 sm:h-14 md:h-16 text-sm sm:text-base md:text-lg px-8 sm:px-10 md:px-12">
                 Send Message
               </Button>
             </form>
           </div>
 
           {/* info */}
-          <div className="flex-1 flex flex-col justify-center xl:items-end order-1 xl:order-none mb-6 sm:mb-8 xl:mb-0">
-            <div className="flex flex-col gap-4 sm:gap-6 xl:gap-8 w-full max-w-[400px]">
+          <div className="flex-1 flex flex-col justify-center lg:items-end order-1 lg:order-none mb-6 sm:mb-8 lg:mb-0">
+            <div className="flex flex-col gap-6 sm:gap-8 md:gap-10 lg:gap-12 w-full max-w-[400px] lg:max-w-[500px]">
               {info.map((item, index) => (
                 <div
                   key={index}
-                  className="flex items-center gap-4 sm:gap-6 bg-[#2e2e35] p-4 sm:p-5 rounded-xl hover:bg-[#3a3a42] transition-all"
+                  className="flex items-center gap-4 sm:gap-6 md:gap-8 bg-[#2e2e35] p-4 sm:p-6 md:p-8 rounded-xl hover:bg-[#3a3a42] transition-all"
                 >
-                  <div className="text-accent text-xl sm:text-2xl">{item.icon}</div>
+                  <div className="text-accent text-xl sm:text-2xl md:text-3xl">{item.icon}</div>
                   <div>
-                    <p className="text-white/60 text-xs sm:text-sm">{item.title}</p>
-                    <h4 className="text-base sm:text-lg xl:text-xl font-semibold">{item.description}</h4>
+                    <p className="text-white/60 text-xs sm:text-sm md:text-base">{item.title}</p>
+                    <h4 className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold">{item.description}</h4>
                   </div>
                 </div>
               ))}
