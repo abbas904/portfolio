@@ -1,26 +1,59 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* 🎨 Theme Variables */
+@theme {
+  --color-primary: #1c1c22;
+  --color-accent: #00ff99;
+  --color-accent-hover: #00e187;
+  --color-secondary: #a78bfa;
+  --color-secondary-hover: #c084fc;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* 🌍 Global Styles */
+body {
+  font-family: var(--font-JetBrains_Mono);
+  background-color: black;
+  color: white;
+  line-height: 2; /* نفس قيمة leading-loose */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* 🧱 Components Layer */
+@layer components {
+  .h1 {
+    @apply text-[48px] xl:text-[80px] leading-[1.1] font-semibold tracking-[-2px] mb-6;
+  }
+
+  .h2 {
+    @apply text-[36px] xl:text-[48px] leading-[1.1] font-semibold tracking-[-2px] mb-6;
+  }
+  .h3{
+    @apply text-[20px] xl:text-[24px] leading-[1.1] font-semibold tracking-[-2px] mb-6;
   }
 }
+.tabs-scroll::-webkit-scrollbar {
+  height: 8px; /* horizontal scrollbar height */
+}
+.tabs-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.tabs-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, rgba(0,255,153,0.35), rgba(0,255,153,0.65));
+  border-radius: 9999px;
+}
+.tabs-scroll::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, rgba(0,255,153,0.5), rgba(0,255,153,0.85));
+}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Firefox */
+.tabs-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,255,153,0.65) transparent;
+}
+.text-outline{
+  -webkit-text-stroke: 1px #ffffff;
+  -webkit-text-fill-color: transparent;
+  
+}
+.text-outline:hover{
+  -webkit-text-stroke: 1px #00e187;
 }
