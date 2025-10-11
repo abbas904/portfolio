@@ -12,12 +12,14 @@ const stats = [
 
 const Stats = () => {
   const [startCounting, setStartCounting] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
-  // عشان العد يبدأ بعد ما الصفحة تعمل mount (مهم جدًا في Next.js)
   useEffect(() => {
+    // تأكد من أن العداد يبدأ بعد تحميل الصفحة بالكامل
     const timer = setTimeout(() => {
+      setIsVisible(true);
       setStartCounting(true);
-    }, 1000); // تأخير قصير لضمان أن الصفحة محملة بالكامل
+    }, 500);
 
     return () => clearTimeout(timer);
   }, []);
@@ -28,15 +30,16 @@ const Stats = () => {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12 text-center">
           {stats.map((item, index) => (
             <div key={index} className="flex flex-col items-center space-y-2 sm:space-y-3 lg:space-y-4">
-              <div className="relative">
-                {startCounting && (
+              <div className="relative min-h-[60px] flex items-center justify-center">
+                {isVisible && startCounting ? (
                   <CountUp
                     start={0}
                     end={item.num}
-                    duration={2.5}
-                    delay={index * 0.2} // تأخير تدريجي لكل عنصر
+                    duration={3}
+                    delay={index * 0.3}
                     enableScrollSpy={false}
                     scrollSpyOnce={true}
+                    onEnd={() => console.log(`Counter ${index} finished`)}
                   >
                     {({ countUpRef }) => (
                       <span
@@ -45,8 +48,7 @@ const Stats = () => {
                       />
                     )}
                   </CountUp>
-                )}
-                {!startCounting && (
+                ) : (
                   <span className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-accent block">
                     0
                   </span>
