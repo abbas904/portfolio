@@ -11,17 +11,11 @@ const stats = [
 ];
 
 const Stats = () => {
-  const [startCounting, setStartCounting] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // تأكد من أن العداد يبدأ بعد تحميل الصفحة بالكامل
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-      setStartCounting(true);
-    }, 500);
-
-    return () => clearTimeout(timer);
+    // بدء العد فور تحميل المكون
+    setIsVisible(true);
   }, []);
 
   return (
@@ -30,8 +24,8 @@ const Stats = () => {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12 text-center">
           {stats.map((item, index) => (
             <div key={index} className="flex flex-col items-center space-y-2 sm:space-y-3 lg:space-y-4">
-              <div className="relative min-h-[60px] flex items-center justify-center">
-                {isVisible && startCounting ? (
+              <div className="relative min-h-[60px] sm:min-h-[80px] lg:min-h-[100px] flex items-center justify-center">
+                {isVisible ? (
                   <CountUp
                     start={0}
                     end={item.num}
@@ -39,7 +33,6 @@ const Stats = () => {
                     delay={index * 0.3}
                     enableScrollSpy={false}
                     scrollSpyOnce={true}
-                    onEnd={() => console.log(`Counter ${index} finished`)}
                   >
                     {({ countUpRef }) => (
                       <span
