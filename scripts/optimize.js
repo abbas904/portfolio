@@ -21,3 +21,4 @@ process.env.NEXT_TELEMETRY_DISABLED = '1';
 
 console.log('✅ تم تحسين الأداء بنجاح!');
 console.log('💡 استخدم: npm run dev:fast للحصول على أفضل أداء');
+

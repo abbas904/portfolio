@@ -87,8 +87,8 @@ const Resume = () => {
           defaultValue="Experience"
           className="flex flex-col xl:flex-row gap-4 sm:gap-6 xl:gap-16 w-full"
         >
-          {/* Tabs List - دايمًا عمودي */}
-          <TabsList className="flex flex-col gap-2 sm:gap-3 w-full max-w-[300px]">
+          {/* Tabs List */}
+          <TabsList className="flex flex-row xl:flex-col gap-2 sm:gap-3 w-full xl:max-w-[300px] overflow-x-auto xl:overflow-x-visible">
             {["Experience", "Education", "Skills", "About Me"].map((tab) => (
               <TabsTrigger
                 key={tab}
@@ -153,6 +153,7 @@ const Resume = () => {
                 ))}
               </div>
             </TabsContent>
+
 
             {/* About Me */}
             <TabsContent value="About Me">
