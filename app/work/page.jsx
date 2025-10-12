@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import WorkSliderBtns from "@/components/WorkSliderBtns";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -18,7 +18,7 @@ const projects = [
   {
     num: "01",
     category: "front-end",
-    title: "E-commerce Website",
+    title: "ShopSizzle",
     description:
       "ShopSizzle is a modern, responsive online shopping platform designed to provide users with a seamless and engaging buying experience.",
     Stack: [
@@ -26,6 +26,7 @@ const projects = [
       { name: "TailwindCss" },
       { name: "Javascript" },
       { name: "React" },
+      { name: "Framer-Motion" },
     ],
     image: "/e-commerce.jpg",
     github: "https://github.com/abbas904/shop-sizzle",
@@ -58,6 +59,7 @@ const projects = [
       { name: "TailwindCss" },
       { name: "Javascript" },
       { name: "React" },
+      { name: "Framer-Motion" },
     ],
     image: "/chef.jpg",
     github: "https://github.com/abbas904/Foodu",
@@ -67,11 +69,56 @@ const projects = [
 
 const Work = () => {
   const [project, setProject] = useState(projects[0]);
+  const [isReversed, setIsReversed] = useState(false);
+  const [currentRound, setCurrentRound] = useState(1);
+  const swiperRef = useRef(null);
+  const autoplayRef = useRef(null);
 
   const handlSliderChange = (swiper) => {
     const currentIndex = swiper.activeIndex;
     setProject(projects[currentIndex]);
   };
+
+  // Custom autoplay function with reverse functionality
+  useEffect(() => {
+    const startAutoplay = () => {
+      if (swiperRef.current) {
+        autoplayRef.current = setInterval(() => {
+          if (swiperRef.current) {
+            if (!isReversed) {
+              // Forward direction
+              if (swiperRef.current.activeIndex === projects.length - 1) {
+                // End of first round, start reverse
+                setIsReversed(true);
+                setCurrentRound(2);
+                swiperRef.current.slidePrev();
+              } else {
+                swiperRef.current.slideNext();
+              }
+            } else {
+              // Reverse direction
+              if (swiperRef.current.activeIndex === 0) {
+                // Back to start, go forward again
+                setIsReversed(false);
+                setCurrentRound(1);
+                swiperRef.current.slideNext();
+              } else {
+                swiperRef.current.slidePrev();
+              }
+            }
+          }
+        }, 3000);
+      }
+    };
+
+    startAutoplay();
+
+    return () => {
+      if (autoplayRef.current) {
+        clearInterval(autoplayRef.current);
+      }
+    };
+  }, [isReversed]);
 
   return (
     <motion.section
@@ -149,6 +196,10 @@ const Work = () => {
               slidesPerView={1}
               className="lg:h-[520px] mb-12"
               onSlideChange={handlSliderChange}
+              onSwiper={(swiper) => {
+                swiperRef.current = swiper;
+              }}
+              loop={false}
             >
               {projects.map((project, index) => (
                 <SwiperSlide key={index} className="w-full">
@@ -170,11 +221,15 @@ const Work = () => {
               ))}
 
               {/* ==== Slider Buttons ==== */}
-              <WorkSliderBtns
-                containerStyles="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-6 z-50"
-                btnStyles="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-white/20 border border-white/40 rounded-full flex justify-center items-center hover:bg-accent transition-all"
-                iconsStyles="text-xl sm:text-2xl md:text-3xl text-white"
-              />
+             {/* ==== Slider Buttons ==== */}
+<WorkSliderBtns
+  containerStyles="absolute top-1/2 left-0 w-full flex justify-between px-6 sm:px-10 md:px-14 lg:px-20 transform -translate-y-1/2 z-50"
+  btnStyles="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-18 lg:h-18 bg-white/20 border border-white/40 rounded-full flex justify-center items-center hover:bg-accent hover:text-white shadow-lg transition-all duration-300"
+  iconsStyles="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white"
+/>
+
+
+
             </Swiper>
           </div>
         </div>

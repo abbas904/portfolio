@@ -16,7 +16,7 @@ const Photo = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 0.4, ease: "easeInOut" }}
-          className="w-[180px] h-[180px] sm:w-[220px] sm:h-[220px] md:w-[280px] md:h-[280px] lg:w-[320px] lg:h-[320px] xl:w-[380px] xl:h-[380px] 2xl:w-[450px] 2xl:h-[450px] rounded-full overflow-hidden shadow-2xl mix-blend-lighten relative"
+          className="w-[260px] h-[260px] sm:w-[240px] sm:h-[240px] md:w-[280px] md:h-[280px] lg:w-[320px] lg:h-[320px] xl:w-[380px] xl:h-[380px] 2xl:w-[450px] 2xl:h-[450px] rounded-full overflow-hidden shadow-2xl mix-blend-lighten relative"
         >
           <Image
             src="/me-removebg-preview.png"
@@ -30,7 +30,7 @@ const Photo = () => {
 
         {/* الدائرة المتحركة حول الصورة */}
         <motion.svg
-          className="w-[182px] h-[182px] sm:w-[222px] sm:h-[222px] md:w-[282px] md:h-[282px] lg:w-[322px] lg:h-[322px] xl:w-[382px] xl:h-[382px] 2xl:w-[452px] 2xl:h-[452px] absolute top-0 left-0"
+          className="w-[260px] h-[260px] sm:w-[240px] sm:h-[240px] md:w-[282px] md:h-[282px] lg:w-[322px] lg:h-[322px] xl:w-[382px] xl:h-[382px] 2xl:w-[452px] 2xl:h-[452px] absolute top-0 left-0"
           fill="transparent"
           viewBox="0 0 506 506"
           xmlns="http://www.w3.org/2000/svg"

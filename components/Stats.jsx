@@ -2,6 +2,7 @@
 
 import CountUp from "react-countup";
 import { useEffect, useState } from "react";
+import { useInView } from "react-intersection-observer";
 
 const stats = [
   { num: 2, text: "Years of Experience" },
@@ -12,68 +13,61 @@ const stats = [
 
 const Stats = () => {
   const [isClient, setIsClient] = useState(false);
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
 
   useEffect(() => {
-    // تأكد من أننا في المتصفح وليس في SSR
     setIsClient(true);
   }, []);
 
-  // إذا لم نكن في المتصفح بعد، اعرض الأرقام الثابتة
-  if (!isClient) {
-    return (
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-t from-primary/20 to-transparent w-full">
-        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 md:gap-16 lg:gap-20 text-center">
-            {stats.map((item, index) => (
-              <div key={index} className="flex flex-col items-center space-y-3 sm:space-y-4 md:space-y-5 lg:space-y-6">
-                <div className="relative min-h-[70px] sm:min-h-[90px] md:min-h-[110px] lg:min-h-[130px] flex items-center justify-center w-full">
-                  <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold text-accent block">
-                    {item.num}
-                  </span>
-                </div>
-                <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-white/70 font-medium leading-tight px-2 max-w-[200px]">
-                  {item.text}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  return (
-    <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-t from-primary/20 to-transparent w-full">
-      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 md:gap-16 lg:gap-20 text-center">
-          {stats.map((item, index) => (
-            <div key={index} className="flex flex-col items-center space-y-3 sm:space-y-4 md:space-y-5 lg:space-y-6">
-              <div className="relative min-h-[70px] sm:min-h-[90px] md:min-h-[110px] lg:min-h-[130px] flex items-center justify-center w-full">
+  // ✅ نفس التصميم للـ SSR ولـ Client لكن بدون عدّاد أثناء SSR
+  const StatsGrid = ({ withCountUp = false }) => (
+    <div className="container mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 md:gap-14 text-center">
+        {stats.map((item, index) => (
+          <div
+            key={index}
+            className="flex flex-col items-center space-y-3 sm:space-y-4 md:space-y-5"
+          >
+            <div className="min-h-[60px] sm:min-h-[80px] md:min-h-[100px] flex items-center justify-center">
+              {withCountUp && inView ? (
                 <CountUp
                   start={0}
                   end={item.num}
                   duration={2.5}
                   delay={index * 0.2}
-                  enableScrollSpy={false}
-                  scrollSpyOnce={true}
-                  useEasing={true}
+                  enableScrollSpy
+                  scrollSpyOnce
+                  useEasing
                   separator=","
                 >
                   {({ countUpRef }) => (
                     <span
                       ref={countUpRef}
-                      className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold text-accent block"
+                      className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold text-accent tracking-tight leading-tight"
                     />
                   )}
                 </CountUp>
-              </div>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-white/70 font-medium leading-tight px-2 max-w-[200px]">
-                {item.text}
-              </p>
+              ) : (
+                <span className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold text-accent tracking-tight leading-tight">
+                  {item.num}
+                </span>
+              )}
             </div>
-          ))}
-        </div>
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/70 font-medium leading-snug max-w-[180px]">
+              {item.text}
+            </p>
+          </div>
+        ))}
       </div>
+    </div>
+  );
+
+  return (
+    <section
+      ref={ref}
+      className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-t from-primary/20 to-transparent w-full"
+    >
+      <StatsGrid withCountUp={isClient} />
     </section>
   );
 };

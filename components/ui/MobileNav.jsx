@@ -4,6 +4,8 @@ import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "../ui/sheet";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { CiMenuFries } from "react-icons/ci";
+import { FaWhatsapp } from "react-icons/fa";
+import { Button } from "./button";
 
 const Links = [
   { name: "home", path: "/" },
@@ -13,7 +15,7 @@ const Links = [
   { name: "contact", path: "/contact" },
 ];
 
-const MobileNav = () => {
+const MobileNav = ({ whatsappLink }) => {
   const pathname = usePathname();
 
   return (
@@ -53,6 +55,23 @@ const MobileNav = () => {
             </li>
           ))}
         </ul>
+
+        {/* WhatsApp Button */}
+        {whatsappLink && (
+          <div className="mt-8">
+            <Button asChild className="bg-green-500 hover:bg-green-600 text-white">
+              <a
+                href={whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2"
+              >
+                <FaWhatsapp className="text-lg" />
+                Hire Me
+              </a>
+            </Button>
+          </div>
+        )}
       </SheetContent>
     </Sheet>
   );

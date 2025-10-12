@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
+import { FiDownload } from "react-icons/fi";
 import {
   FaHtml5,
   FaCss3,
@@ -75,6 +77,15 @@ const skills = {
 };
 
 const Resume = () => {
+  const handleDownloadCV = () => {
+    const link = document.createElement('a');
+    link.href = '/Abbas Rizk_resume.pdf';
+    link.download = 'Abbas-Rizk-CV.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -83,6 +94,19 @@ const Resume = () => {
       className="min-h-screen flex items-center justify-center py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 text-white"
     >
       <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20 max-w-screen-xl">
+        {/* Download CV Button */}
+        <div className="flex justify-center mb-8">
+          <Button
+            onClick={handleDownloadCV}
+            variant="outline"
+            size="lg"
+            className="uppercase flex items-center gap-2 px-8 sm:px-10 md:px-12 py-4 sm:py-5 text-sm sm:text-base md:text-lg"
+          >
+            <span>Download CV</span>
+            <FiDownload className="text-xl sm:text-2xl" />
+          </Button>
+        </div>
+
         <Tabs
           defaultValue="Experience"
           className="flex flex-col lg:flex-row gap-6 sm:gap-8 md:gap-12 lg:gap-16 xl:gap-20 w-full"
