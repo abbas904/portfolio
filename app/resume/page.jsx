@@ -81,7 +81,7 @@ export default function Resume() {
     console.log("Download Clicked");
 
     const link = document.createElement("a");
-    link.href = "/resume.pdf";
+    link.href = "/resume/resume.pdf";
     link.download = "resume.pdf";
     link.click();
   };
