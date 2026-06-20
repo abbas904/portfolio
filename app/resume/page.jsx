@@ -76,16 +76,15 @@ const skills = {
   ],
 };
 
-const Resume = () => {
-  const handleDownloadCV = () => {
-    const link = document.createElement('a');
-    link.href = '/Abbas Rizk_resume.pdf';
-    link.download = 'Abbas-Rizk-CV.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
 
+const handleDownloadCV = () => {
+  console.log("Download Clicked");
+
+  const link = document.createElement("a");
+  link.href = "/resume.pdf";
+  link.download = "resume.pdf";
+  link.click();
+};
   return (
     <motion.div
       initial={{ opacity: 0 }}

@@ -6,14 +6,14 @@ import Photo from "@/components/Photo";
 import Stats from "@/components/Stats";
 
 const Home = () => {
-  const handleDownloadCV = () => {
-    const link = document.createElement('a');
-    link.href = '/Abbas Rizk_resume.pdf';
-    link.download = 'Abbas-Rizk-CV.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+ const handleDownloadCV = () => {
+  const link = document.createElement("a");
+  link.href = "/resume.pdf";
+  link.download = "resume.pdf";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
   return (
     <section className="min-h-screen flex flex-col justify-center w-full">
       <div className="container mx-auto px-4 sm:px-6 md:px-10 lg:px-12 xl:px-16">

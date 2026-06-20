@@ -19,7 +19,7 @@ const Stats = () => {
     setIsClient(true);
   }, []);
 
-  // ✅ نفس التصميم للـ SSR ولـ Client لكن بدون عدّاد أثناء SSR
+  
   const StatsGrid = ({ withCountUp = false }) => (
     <div className="container mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 md:gap-14 text-center">
