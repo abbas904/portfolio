@@ -78,14 +78,13 @@ const skills = {
 
 export default function Resume() {
   const handleDownloadCV = () => {
-    console.log("Download Clicked");
-
-    const link = document.createElement("a");
-    link.href = "/resume/resume.pdf";
-    link.download = "resume.pdf";
-    link.click();
-  };
-
+  const link = document.createElement("a");
+  link.href = "/resume/resume.pdf";
+  link.download = "resume.pdf";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
   return (
     <motion.div
       initial={{ opacity: 0 }}
