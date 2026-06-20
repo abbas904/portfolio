@@ -34,7 +34,7 @@ const about = {
 const experience = {
   title: "My Experience",
   description:
-    "Front-End Developer with 2 years of experience designing and developing responsive, user-friendly web interfaces. Proficient in HTML, CSS, JavaScript, and modern frameworks such as React.js, and experienced in translating UI/UX designs into clean, efficient code.",
+    "Front-End Developer with 2 years of experience designing and developing responsive, user-friendly web interfaces. Proficient in HTML, CSS, JavaScript, and modern frameworks such as React.js.",
   items: [
     {
       company: "Coders, Nasir City",
@@ -63,7 +63,7 @@ const education = {
 const skills = {
   title: "My Skills",
   description:
-    "Proficient in HTML, CSS, JavaScript, and modern frameworks such as React.js. Experienced in translating UI/UX designs into clean, efficient code.",
+    "Proficient in HTML, CSS, JavaScript, React.js, and modern frameworks.",
   skillList: [
     { name: "HTML", icon: <FaHtml5 /> },
     { name: "CSS", icon: <FaCss3 /> },
@@ -76,130 +76,99 @@ const skills = {
   ],
 };
 
+export default function Resume() {
+  const handleDownloadCV = () => {
+    console.log("Download Clicked");
 
-const handleDownloadCV = () => {
-  console.log("Download Clicked");
+    const link = document.createElement("a");
+    link.href = "/resume.pdf";
+    link.download = "resume.pdf";
+    link.click();
+  };
 
-  const link = document.createElement("a");
-  link.href = "/resume.pdf";
-  link.download = "resume.pdf";
-  link.click();
-};
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 0.5, duration: 0.5, ease: "easeInOut" }}
-      className="min-h-screen flex items-center justify-center py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 text-white"
+      className="min-h-screen flex items-center justify-center py-8 text-white"
     >
-      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20 max-w-screen-xl">
-        {/* Download CV Button */}
+      <div className="container mx-auto px-4">
+
+        {/* Download CV */}
         <div className="flex justify-center mb-8">
-          <Button
-            onClick={handleDownloadCV}
-            variant="outline"
-            size="lg"
-            className="uppercase flex items-center gap-2 px-8 sm:px-10 md:px-12 py-4 sm:py-5 text-sm sm:text-base md:text-lg"
-          >
+          <Button onClick={handleDownloadCV} variant="outline" size="lg">
             <span>Download CV</span>
-            <FiDownload className="text-xl sm:text-2xl" />
+            <FiDownload />
           </Button>
         </div>
 
-        <Tabs
-          defaultValue="Experience"
-          className="flex flex-col lg:flex-row gap-6 sm:gap-8 md:gap-12 lg:gap-16 xl:gap-20 w-full"
-        >
+        <Tabs defaultValue="Experience" className="flex flex-col lg:flex-row gap-10">
+
           {/* Tabs List */}
-          <TabsList className="flex flex-row lg:flex-col gap-3 sm:gap-4 md:gap-6 w-full lg:max-w-[350px] overflow-x-auto lg:overflow-x-visible">
+          <TabsList className="flex flex-col gap-4 w-full lg:max-w-[300px]">
             {["Experience", "Education", "Skills", "About Me"].map((tab) => (
-              <TabsTrigger
-                key={tab}
-                value={tab}
-                className="text-white bg-[#27272c] hover:bg-green-500 hover:text-black rounded-lg px-4 sm:px-6 md:px-8 py-3 sm:py-4 md:py-5 text-center transition-all duration-300 data-[state=active]:bg-green-500 data-[state=active]:text-black text-sm sm:text-base md:text-lg whitespace-nowrap"
-              >
+              <TabsTrigger key={tab} value={tab}>
                 {tab}
               </TabsTrigger>
             ))}
           </TabsList>
 
-          {/* Tabs Content */}
-          <div className="min-h-[70vh] w-full mt-6 lg:mt-0">
-            {/* Experience */}
-            <TabsContent value="Experience">
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 md:mb-8">{experience.title}</h3>
-              <p className="text-white/70 mb-6 sm:mb-8 md:mb-10 text-sm sm:text-base md:text-lg">{experience.description}</p>
-              <div className="flex flex-col gap-6 sm:gap-8 md:gap-10">
-                {experience.items.map((exp, index) => (
-                  <div
-                    key={index}
-                    className="border border-gray-700 p-4 sm:p-6 md:p-8 rounded-lg hover:border-green-500 transition"
-                  >
-                    <h4 className="text-lg sm:text-xl md:text-2xl font-semibold text-white mb-2">{exp.role}</h4>
-                    <p className="text-accent text-sm sm:text-base md:text-lg mb-2">{exp.company}</p>
-                    <span className="text-xs sm:text-sm md:text-base text-gray-400">{exp.period}</span>
-                  </div>
-                ))}
-              </div>
-            </TabsContent>
+          {/* Content */}
+          <div className="w-full">
 
-            {/* Education */}
-            <TabsContent value="Education">
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 md:mb-8">{education.title}</h3>
-              <p className="text-accent mb-6 sm:mb-8 md:mb-10 text-sm sm:text-base md:text-lg">{education.description}</p>
-              {education.items.map((edu, index) => (
-                <div
-                  key={index}
-                  className="border border-gray-700 p-4 sm:p-6 md:p-8 rounded-lg hover:border-green-500 transition mb-4 sm:mb-6 md:mb-8"
-                >
-                  <h4 className="text-lg sm:text-xl md:text-2xl font-semibold mb-2">{edu.title}</h4>
-                  <span className="text-xs sm:text-sm md:text-base text-accent">{edu.period}</span>
+            <TabsContent value="Experience">
+              <h2>{experience.title}</h2>
+              <p>{experience.description}</p>
+
+              {experience.items.map((exp, i) => (
+                <div key={i}>
+                  <h3>{exp.role}</h3>
+                  <p>{exp.company}</p>
+                  <span>{exp.period}</span>
                 </div>
               ))}
             </TabsContent>
 
-            {/* Skills */}
+            <TabsContent value="Education">
+              <h2>{education.title}</h2>
+              <p>{education.description}</p>
+
+              {education.items.map((edu, i) => (
+                <div key={i}>
+                  <h3>{edu.title}</h3>
+                  <span>{edu.period}</span>
+                </div>
+              ))}
+            </TabsContent>
+
             <TabsContent value="Skills">
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 md:mb-8">{skills.title}</h3>
-              <p className="text-white/70 mb-6 sm:mb-8 md:mb-10 text-sm sm:text-base md:text-lg">{skills.description}</p>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-6 sm:gap-8 md:gap-10">
+              <h2>{skills.title}</h2>
+
+              <div className="grid grid-cols-2 gap-4">
                 {skills.skillList.map((skill) => (
-                  <div
-                    key={skill.name}
-                    className="flex flex-col items-center gap-3 sm:gap-4 group"
-                  >
-                    <div className="text-3xl sm:text-4xl md:text-5xl border border-gray-500 rounded-lg p-4 sm:p-6 md:p-8 transition-colors duration-300 group-hover:text-accent">
-                      {skill.icon}
-                    </div>
-                    <span className="text-sm sm:text-base md:text-lg">{skill.name}</span>
+                  <div key={skill.name}>
+                    {skill.icon}
+                    <p>{skill.name}</p>
                   </div>
                 ))}
               </div>
             </TabsContent>
 
-            {/* About Me */}
             <TabsContent value="About Me">
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 md:mb-8">{about.title}</h3>
-              <p className="text-white/70 mb-6 sm:mb-8 md:mb-10 text-sm sm:text-base md:text-lg">{about.description}</p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
-                {about.info.map((item, index) => (
-                  <div
-                    key={index}
-                    className="border border-gray-700 p-4 sm:p-6 md:p-8 rounded-lg flex justify-between hover:border-green-500 transition"
-                  >
-                    <span className="font-medium text-white text-sm sm:text-base md:text-lg">
-                      {item.fieldname}:
-                    </span>
-                    <span className="text-accent text-sm sm:text-base md:text-lg">{item.value}</span>
-                  </div>
-                ))}
-              </div>
+              <h2>{about.title}</h2>
+              <p>{about.description}</p>
+
+              {about.info.map((item, i) => (
+                <div key={i}>
+                  <strong>{item.fieldname}:</strong> {item.value}
+                </div>
+              ))}
             </TabsContent>
+
           </div>
         </Tabs>
       </div>
     </motion.div>
   );
-};
-
-export default Resume;
+}
